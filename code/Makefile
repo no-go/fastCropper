@@ -1,5 +1,5 @@
-CFLAGS=-march=native -pipe -O2 -Wall
-LDFLAGS=`pkg-config --cflags opencv --libs opencv` `fltk-config --ldflags --cxxflags` -lm $(DFLAGS)
+CFLAGS=-march=native -pipe -O2 -Wall -I/usr/include/opencv4
+LDFLAGS=-lopencv_highgui -lopencv_imgproc -lopencv_imgcodecs -lopencv_core `fltk-config --ldflags --cxxflags` -lm $(DFLAGS)
 BIN=fastCropper
 
 all: $(BIN).cpp
