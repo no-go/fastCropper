@@ -183,7 +183,8 @@ int main(int argc, char** argv) {
 	Mat resultImg, viewImg;
 	ready = false;
 	clickCount = 0;
-	char sizeLable[15];
+	char sizeLable[18];
+	char sizeLable2[18];
 
 	if(argc < 2) {
 		cout<<"=> The image-file-path parameter is missing !"<<endl;
@@ -197,19 +198,19 @@ int main(int argc, char** argv) {
 	}
 
 	/// Automatic resizing result window
-	namedWindow((string) "+ RESULT +", WINDOW_AUTOSIZE);
+	namedWindow((string) "RESULT", WINDOW_AUTOSIZE);
 	/// scalable window to crop/select a region
-	namedWindow((string) "see and crop", WINDOW_NORMAL);
+	namedWindow((string) "fastCropper", WINDOW_NORMAL);
 	
-	setMouseCallback((string) "see and crop", navigate);
+	setMouseCallback((string) "fastCropper", navigate);
 	/// some initial images
 	resultImg = workImg.clone();
 	viewImg = workImg.clone();
-	imshow((string) "+ RESULT +", resultImg);
-	imshow((string) "see and crop", viewImg);
+	imshow((string) "RESULT", resultImg);
+	imshow((string) "fastCropper", viewImg);
 
 	resizeWindow(
-		(string) "see and crop",
+		(string) "fastCropper",
 		800,
 		800.0 * viewImg.rows / viewImg.cols
 	);
@@ -220,14 +221,18 @@ int main(int argc, char** argv) {
 		if(clickCount>0) {
 			/// draw/recalculate new region into result
 			calcResult(resultImg);
-			imshow((string) "+ RESULT +", resultImg);
+			imshow((string) "RESULT", resultImg);
 			MarkRegion(viewImg, selection[0], selection[2]);
-			sprintf(sizeLable, "%d x %d", width, height);
+			sprintf(sizeLable, "%dx%d", width, height);
 			putText(viewImg, sizeLable, Point2f(2,13), FONT_HERSHEY_COMPLEX_SMALL, 0.7, Scalar::all(0), 2, CV_AA);
 			putText(viewImg, sizeLable, Point2f(1,12), FONT_HERSHEY_COMPLEX_SMALL, 0.7, Scalar::all(255), 1, CV_AA);
+            
+			sprintf(sizeLable2, "%dx%d", workImg.cols, workImg.rows);
+			putText(viewImg, sizeLable2, Point2f(2,25), FONT_HERSHEY_COMPLEX_SMALL, 0.6, Scalar::all(255), 2, CV_AA);
+			putText(viewImg, sizeLable2, Point2f(1,24), FONT_HERSHEY_COMPLEX_SMALL, 0.6, Scalar::all(0), 1, CV_AA);
 		}
 		/// redraw cropping-Tool image/window
-		imshow((string) "see and crop", viewImg);
+		imshow((string) "fastCropper", viewImg);
 
 		/// leave loop on keypress
 		if(waitKey(30) >= 0) break;
