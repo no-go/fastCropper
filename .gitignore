@@ -1,32 +1,25 @@
 # Prerequisites
-*.d
+code/*.d
 
 # Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
+code/*.slo
+code/*.lo
+code/*.o
+code/*.obj
 
 # Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
+code/*.so
+code/*.dylib
+code/*.dll
 
 # Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+code/*.lai
+code/*.la
+code/*.a
+code/*.lib
 
 # Executables
-*.exe
-*.out
-*.app
+code/*.exe
+code/*.out
+code/*.app
+code/fastCropper
